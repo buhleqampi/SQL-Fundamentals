@@ -1,0 +1,57 @@
+//first letter B
+SELECT *
+FROM people
+WHERE name LIKE 'B%';
+
+
+//second letter r
+SELECT name
+FROM people
+-- Select the names that have r as the second letter
+WHERE name LIKE '_r%'
+
+//first letter not equal to A
+
+SELECT name
+FROM people
+WHERE name  NOT LIKE 'A%'
+
+
+//Longer practice
+SELECT title, release_year 
+FROM films
+WHERE release_year = 1990 
+OR release_year = 2000
+AND duration > 120 
+
+//Better practice
+SELECT title, release_year 
+FROM films
+WHERE release_year IN (1990, 2000) 
+AND duration > 120;
+
+SELECT title, certification, language
+FROM films
+WHERE certification IN ('NC-17','R')
+AND language IN('English', 'Italian','Greek');
+
+//Challenging query
+
+-- Count the unique titles
+SELECT COUNT(DISTINCT title) AS nineties_english_films_for_teens
+FROM films
+-- Filter to release_years to between 1990 and 1999
+WHERE release_year BETWEEN 1990 AND 1999
+-- Filter to English-language films
+	AND language = 'English'
+-- Narrow it down to G, PG, and PG-13 certifications
+AND certification IN ('G','PG','PG-13');
+
+//IS NULL or IS NOT NULL
+
+SELECT title
+AS no_budget_info
+FROM films
+WHERE budget IS NULL ;
+
+
