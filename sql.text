@@ -54,4 +54,91 @@ AS no_budget_info
 FROM films
 WHERE budget IS NULL ;
 
+// COUNT & DISTINCT
+
+SELECT COUNT(film_id)
+AS count_film_id
+FROM reviews;
+
+=> returns the number of records containing a value in a field(film_id)
+
+SELECT COUNT(*)
+AS count_records 
+FROM people;
+
+=>selects all records from people table, and also aliasing.
+
+SELECT COUNT(birthdate)
+AS count_birthdate
+FROM people;
+
+=>Count the number of birthdates in the people table and rename it to count_birthdate
+
+SELECT COUNT(DISTINCT birthdate)
+AS count_birthdate
+FROM people;
+
+=> returns the no. of birthdates but eliminates duplicates and produces unique values.
+
+SELECT COUNT(language)
+AS count_languages, 
+COUNT(country)
+AS count_countries
+FROM films;
+
+=> returns record of language field and country from the table films.
+
+//LIMIT & WHERE
+
+SELECT film_id, facebook_likes
+FROM reviews
+WHERE facebook_likes < 1000
+LIMIT 10;
+
+SELECT film_id, imdb_score
+FROM reviews
+WHERE imdb_score = 500;
+
+SELECT COUNT(language)
+AS count_spanish
+FROM films
+WHERE  language ='Spanish';
+
+//OR, AND, BETWEEN
+
+SELECT title, release_year
+FROM films
+WHERE language = 'German'
+AND release_year < 2000;
+
+SELECT * 
+FROM films
+WHERE language = 'German'
+AND release_year > 2000
+AND release_year < 2010;
+
+SELECT title, release_year
+FROM films
+WHERE release_year = 1990
+OR release_year = 1999;
+
+SELECT title, release_year
+FROM films
+WHERE (release_year = 1990 OR release_year = 1999)
+AND (language = 'English' OR language = 'Spanish');
+
+SELECT title, release_year
+FROM films
+WHERE release_year
+BETWEEN 1990
+AND 2000;
+
+SELECT title, release_year
+FROM films
+WHERE release_year
+BETWEEN 1990 AND 2000
+AND budget > 100000000
+AND (language = 'Spanish'
+OR language = 'French');
+
 
