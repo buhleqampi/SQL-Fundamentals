@@ -142,3 +142,11 @@ AND (language = 'Spanish'
 OR language = 'French');
 
 
+//ALIASING WITH FUNCTIONS
+
+
+SELECT (COUNT(*) * 100.0 / (SELECT COUNT(*) FROM people)) AS percentage_dead
+FROM people
+WHERE deathdate IS NOT NULL;
+
+
