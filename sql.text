@@ -131,7 +131,9 @@ SELECT title, release_year
 FROM films
 WHERE release_year
 BETWEEN 1990
-AND 2000;
+AND 2000;Hi Cheryl,
+
+I hope you are doing well. I noticed that my surname has been inputted incorrectly in a recent email.
 
 SELECT title, release_year
 FROM films
@@ -145,8 +147,23 @@ OR language = 'French');
 //ALIASING WITH FUNCTIONS
 
 
+-- Calculate the title and duration_hours from films
+SELECT title, duration / 60.0
+AS duration_hours
+FROM films;
+
+
+Calculate the percentage of people who are no longer alive and alias the result as percentage_dead.
 SELECT (COUNT(*) * 100.0 / (SELECT COUNT(*) FROM people)) AS percentage_dead
 FROM people
 WHERE deathdate IS NOT NULL;
 
+-- Find the number of decades in the films table
+SELECT (MAX(release_year) - MIN(release_year)) / 10.0 AS number_of_decades,
+FROM films;
+
+//Rounding results
+
+SELECT title, ROUND(duration / 60.0, 2) AS duration_hours
+FROM films;
 
